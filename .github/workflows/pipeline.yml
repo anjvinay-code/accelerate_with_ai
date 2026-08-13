@@ -1,0 +1,30 @@
+name: IDAMP Pipeline
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Write .env from secret
+        env:
+          GITHUB_MODEL_TOKEN: ${{ secrets.GITHUB_MODEL_TOKEN }}
+        run: |
+          echo "GITHUB_TOKEN=${GITHUB_MODEL_TOKEN}" > .env
+          echo "GITHUB_MODEL=openai/gpt-4.1-mini" >> .env
+          echo "LLM_PROVIDER=github" >> .env
+
+      - name: Run pipeline
+        run: |
+          python cli.py --files "data/landing/sales_data 2.csv" "data/landing/products 3.csv" "data/landing/stores 3.csv" --intent "Which product category generated the highest total sales revenue?"
