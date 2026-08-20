@@ -27,6 +27,10 @@ if "/" not in GITHUB_MODEL:
 
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "github").strip().lower()
 
+# GROQ provider config (optional)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_ENDPOINT = os.getenv("GROQ_ENDPOINT", "https://api.groq.ai/v1/infer")
+
 
 def ensure_dirs() -> None:
     """Create all expected project directories."""

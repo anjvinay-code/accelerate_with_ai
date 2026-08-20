@@ -7,6 +7,8 @@ duckdb>=0.9.0
 plotly>=5.17.0
 python-dotenv>=1.0.0
 tabulate>=0.9.0
+requests>=2.31.0
+duckdb>=0.9.0
 langchain
 langgraph>=0.2.0
 langchain-openai>=0.2.0

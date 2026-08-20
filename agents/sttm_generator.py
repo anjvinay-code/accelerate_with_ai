@@ -15,6 +15,8 @@ from core.config import (
     GITHUB_BASE_URL,
     GITHUB_MODEL,
     LLM_PROVIDER,
+    GROQ_API_KEY,
+    GROQ_ENDPOINT,
 )
 from core.audit import AuditLogger
 
@@ -26,6 +28,39 @@ def _make_llm():
     global _llm
     if _llm is not None:
         return _llm
+    # Provider switch: support GitHub Models or Groq
+    if LLM_PROVIDER == "groq":
+        if not GROQ_API_KEY:
+            return None
+        try:
+            import requests
+            from types import SimpleNamespace
+
+            class GroqClient:
+                def __init__(self, api_key, endpoint):
+                    self.api_key = api_key
+                    self.endpoint = endpoint
+
+                def invoke(self, prompt: str):
+                    headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+                    payload = {"input": prompt}
+                    r = requests.post(self.endpoint, headers=headers, json=payload, timeout=30)
+                    r.raise_for_status()
+                    data = r.json()
+                    # Try common keys that may hold text output
+                    text = None
+                    if isinstance(data, dict):
+                        text = data.get("output") or data.get("result") or data.get("text") or json.dumps(data)
+                    else:
+                        text = str(data)
+                    return SimpleNamespace(content=text)
+
+            _llm = GroqClient(GROQ_API_KEY, GROQ_ENDPOINT)
+            return _llm
+        except Exception:
+            return None
+
+    # default: GitHub / LangChain ChatOpenAI
     if not GITHUB_TOKEN:
         return None
     try:

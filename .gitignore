@@ -1,3 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data outputs
+data/bronze_layer/
+data/silver_layer/
+data/gold_layer/
+reports/report_*.html
+reports/report_*.json
 .env
 .venv
 venv/

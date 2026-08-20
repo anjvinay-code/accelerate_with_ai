@@ -1,3 +1,18 @@
+# idamp — Medallion Pipeline Demo
+
+This repository contains a small medallion-style ETL pipeline (bronze→silver→gold)
+with example agents and a reporter that generates an HTML summary. Use the
+`tools/run_full_pipeline_local.py` script to run the pipeline on CSVs placed in
+`data/landing`.
+
+Quick start:
+
+Run `python tools/run_full_pipeline_local.py` from the project root. If imports fail,
+set `PYTHONPATH` to the project root before running.
+
+Outputs are written to `data/bronze_layer`, `data/silver_layer`, `data/gold_layer`, and `reports/`.
+
+See `agents/medallion.agent.md` for a small custom agent description.
 # IDAMP — Intent-Driven Agentic Medallion Pipeline
 
 Quickstart to run the local medallion pipeline (raw CSV → Bronze → Silver → Gold → Report).
