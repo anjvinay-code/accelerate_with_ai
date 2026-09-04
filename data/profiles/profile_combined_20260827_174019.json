@@ -1,0 +1,213 @@
+{
+  "run_id": "20260827_174019",
+  "tables": {
+    "sales_data": {
+      "row_count": 10,
+      "columns": {
+        "transaction_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "quality_flags": [],
+          "min": 1.0,
+          "max": 10.0,
+          "mean": 5.5
+        },
+        "transaction_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "01/15/2024",
+            "2024-01-17",
+            "01/18/2024",
+            "2024-01-20",
+            "01/21/2024"
+          ],
+          "quality_flags": [
+            "mixed_date_formats"
+          ]
+        },
+        "product_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "101",
+            "102",
+            "103",
+            "104",
+            "105"
+          ],
+          "quality_flags": [],
+          "min": 101.0,
+          "max": 105.0,
+          "mean": 102.6
+        },
+        "store_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3,
+          "sample_values": [
+            "10",
+            "11",
+            "12"
+          ],
+          "quality_flags": [],
+          "min": 10.0,
+          "max": 12.0,
+          "mean": 10.9
+        },
+        "total_amount": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "120.5",
+            "75.0",
+            "60.0",
+            "45.25",
+            "200.0"
+          ],
+          "quality_flags": [],
+          "min": 9.99,
+          "max": 200.0,
+          "mean": 69.074
+        }
+      }
+    },
+    "products": {
+      "row_count": 5,
+      "columns": {
+        "product_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "101",
+            "102",
+            "103",
+            "104",
+            "105"
+          ],
+          "quality_flags": [],
+          "min": 101.0,
+          "max": 105.0,
+          "mean": 103.0
+        },
+        "product_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "Widget A",
+            "Widget B",
+            "Gadget C",
+            "Device D",
+            "Accessory E"
+          ],
+          "quality_flags": []
+        },
+        "category": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3,
+          "sample_values": [
+            "Electronics",
+            "Home",
+            "Accessories"
+          ],
+          "quality_flags": []
+        },
+        "price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "25.0",
+            "15.0",
+            "10.5",
+            "40.0",
+            "5.99"
+          ],
+          "quality_flags": [],
+          "min": 5.99,
+          "max": 40.0,
+          "mean": 19.298
+        }
+      }
+    },
+    "stores": {
+      "row_count": 3,
+      "columns": {
+        "store_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3,
+          "sample_values": [
+            "10",
+            "11",
+            "12"
+          ],
+          "quality_flags": [],
+          "min": 10.0,
+          "max": 12.0,
+          "mean": 11.0
+        },
+        "store_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3,
+          "sample_values": [
+            "Central Store",
+            "West Store",
+            "East Store"
+          ],
+          "quality_flags": []
+        },
+        "region": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3,
+          "sample_values": [
+            "North",
+            "West",
+            "East"
+          ],
+          "quality_flags": [
+            "possible_abbreviations"
+          ]
+        }
+      }
+    }
+  },
+  "candidate_join_keys": {
+    "product_id": [
+      "products",
+      "sales_data"
+    ],
+    "store_id": [
+      "sales_data",
+      "stores"
+    ]
+  }
+}
